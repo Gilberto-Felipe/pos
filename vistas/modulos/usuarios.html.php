@@ -171,7 +171,7 @@ MODAL AGREGAR USUARIO
               
                 <span class="input-group-addon"><i class="fa fa-users"></i></span> 
 
-                <select class="form-control input-lg" name="nuevoPerfil" required>
+                <select class="form-control input-lg" name="nuevoPerfil">
                   
                   <option value="">Selecionar perfil</option>
 
@@ -217,13 +217,7 @@ MODAL AGREGAR USUARIO
 
         </div>
 
-        <?php 
 
-          $crearUsuario = new ControladorUsuarios();
-
-          $crearUsuario -> ctrCrearUsuario();
-
-        ?>
 
       </form>
 

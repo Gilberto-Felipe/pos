@@ -69,6 +69,9 @@
   <script src="vistas/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
   <script src="vistas/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js"></script>
 
+    <!-- Sweetalert2 -->
+  <script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
+
 </head>
 
   <!--=====================================
@@ -137,14 +140,13 @@ if(isset($_GET["ruta"])){
 
   }
 
-
-
   ?>
 
 
 
-
+  <!-- enlaces a js -->
   <script src="vistas/js/plantilla.js"></script>
+  <script src="vistas/js/usuarios.js"></script>
 
 </body>
 </html>
