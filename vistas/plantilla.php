@@ -83,7 +83,7 @@
 
   <?php
 
-  if (isset($_SESSION['iniciarSesion']) && $_SESSION['iniciarSesion'] == ok) {
+  if (isset($_SESSION['iniciarSesion']) && $_SESSION['iniciarSesion'] == 'ok') {
     
     echo '<div class="wrapper">';
 
