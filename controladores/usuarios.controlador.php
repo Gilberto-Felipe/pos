@@ -21,7 +21,7 @@ class ControladorUsuarios {
 
 				$valor = $_POST["ingUsuario"];
 
-				$respuesta = ModeloUsuarios::MdlMostrarUsuarios($tabla, $item, $valor);
+				$respuesta = ModeloUsuarios::mdlMostrarUsuarios($tabla, $item, $valor);
 
 				if ($respuesta["usuario"] == $_POST["ingUsuario"] && $respuesta["password"] == $encriptar){
 
@@ -200,6 +200,20 @@ class ControladorUsuarios {
 			}
 
 		}
+
+	}
+
+	/*=============================================
+	MOSTRAR USUARIOS              
+	=============================================*/
+
+	static public function ctrMostrarUsuarios($item, $valor){
+
+		$tabla = 'usuarios';
+
+		$respuesta = ModeloUsuarios::mdlMostrarUsuarios($tabla, $item, $valor);
+
+		return $respuesta;
 
 	}
 
