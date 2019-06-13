@@ -78,9 +78,19 @@
 
                         }
 
-                echo   '<td>'.$value["perfil"].'</td>
-                        <td><button class="btn btn-success btn-xs">Activado</button></td>
-                        <td>'.$value["ultimo_login"].'</td>
+                echo   '<td>'.$value["perfil"].'</td>';
+
+                        if ($value["estado"] != 0) {
+
+                          echo '<td><button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value["id"].'" estadoUsuario="0">Activado</button></td>';
+
+                        } else{
+
+                          echo '<td><button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value["id"].'" estadoUsuario="1">Desactivado</button></td>';
+
+                        }
+
+                echo    '<td>'.$value["ultimo_login"].'</td>
                         <td>
                       
                           <div class="btn-group">
@@ -88,7 +98,6 @@
                             <button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
 
                             <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-
 
                           </div>
 
@@ -167,7 +176,7 @@ MODAL AGREGAR USUARIO
               
                 <span class="input-group-addon"><i class="fa fa-key"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevoUsuario" placeholder="Ingresar usuario" required>
+                <input type="text" class="form-control input-lg" name="nuevoUsuario" placeholder="Ingresar usuario" id="nuevoUsuario" required>
 
               </div>
 
@@ -312,7 +321,7 @@ MODAL EDITAR USUARIO
               
                 <span class="input-group-addon"><i class="fa fa-key"></i></span> 
 
-                <input type="text" class="form-control input-lg" id="editarUsuario" name="editarUsuario" value="" required>
+                <input type="text" class="form-control input-lg" id="editarUsuario" name="editarUsuario" value="" readonly>
 
               </div>
 
@@ -326,7 +335,9 @@ MODAL EDITAR USUARIO
               
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span> 
 
-                <input type="password" class="form-control input-lg" name="editarPassword" placeholder="Ingresar la nueva contraseña" required>
+                <input type="password" class="form-control input-lg" name="editarPassword" placeholder="Escribe la nueva contraseña">
+
+                <input type="hidden" id="passwordActual" name="passwordActual">
 
               </div>
 
@@ -340,7 +351,7 @@ MODAL EDITAR USUARIO
               
                 <span class="input-group-addon"><i class="fa fa-users"></i></span> 
 
-                <select class="form-control input-lg" name="editarPerfil" required>
+                <select class="form-control input-lg" name="editarPerfil">
                   
                   <option value="" id="editarPerfil"></option>
 
@@ -368,6 +379,8 @@ MODAL EDITAR USUARIO
 
               <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
 
+              <input type="hidden" name="fotoActual" id="fotoActual">
+
             </div>
 
           </div>
@@ -386,10 +399,12 @@ MODAL EDITAR USUARIO
 
         </div>
 
-<!--         <?php 
+          <?php 
 
-
-        ?> -->
+            $editarUsuario = new ControladorUsuarios();
+            $editarUsuario -> ctrEditarUsuario();
+            
+           ?>
 
       </form>
 
