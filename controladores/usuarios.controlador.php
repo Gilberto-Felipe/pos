@@ -250,7 +250,7 @@ class ControladorUsuarios {
 	}
 
 	/*=============================================
-	EDIATR USUARIOS              
+	EDITAR USUARIOS              
 	=============================================*/
 
 	static public function ctrEditarUsuario(){
@@ -298,41 +298,41 @@ class ControladorUsuarios {
 
 					if ($_FILES['editarFoto']['type'] == 'image/jpeg') {
 						
-					/*=============================================
-					GUARDAR IMAGEN EN  DIRECTORIO
-					=============================================*/
+						/*=============================================
+						GUARDAR IMAGEN EN  DIRECTORIO
+						=============================================*/
 
-					$aleatorio = mt_rand(100, 999);
+						$aleatorio = mt_rand(100, 999);
 
-					$ruta = "vistas/img/usuarios/".$_POST['editarUsuario']."/".$aleatorio.".jpg";
+						$ruta = "vistas/img/usuarios/".$_POST['editarUsuario']."/".$aleatorio.".jpg";
 
-					$origen = imagecreatefromjpeg($_FILES['editarFoto']['tmp_name']);
+						$origen = imagecreatefromjpeg($_FILES['editarFoto']['tmp_name']);
 
-					$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
-					imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
 
-					imagejpeg($destino, $ruta);
+						imagejpeg($destino, $ruta);
 
 					}
 
 					if ($_FILES['editarFoto']['type'] == 'image/png') {
 						
-					/*=============================================
-					GUARDAR IMAGEN EN  DIRECTORIO
-					=============================================*/
+						/*=============================================
+						GUARDAR IMAGEN EN  DIRECTORIO
+						=============================================*/
 
-					$aleatorio = mt_rand(100, 999);
+						$aleatorio = mt_rand(100, 999);
 
-					$ruta = "vistas/img/usuarios/".$_POST['editarUsuario']."/".$aleatorio.".png";
+						$ruta = "vistas/img/usuarios/".$_POST['editarUsuario']."/".$aleatorio.".png";
 
-					$origen = imagecreatefrompng($_FILES['editarFoto']['tmp_name']);
+						$origen = imagecreatefrompng($_FILES['editarFoto']['tmp_name']);
 
-					$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
-					imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
 
-					imagepng($destino, $ruta);
+						imagepng($destino, $ruta);
 
 					}
 
@@ -437,6 +437,60 @@ class ControladorUsuarios {
 					});
 
 					</script>';
+
+			}
+
+		}
+
+	}
+
+	/*=============================================
+	ELIMINAR USUARIO             
+	=============================================*/
+
+	public function ctrBorrarUsuario(){
+
+		if(isset($_GET['idUsuario'])){
+
+			if($_GET["idUsuario"] != $_SESSION["id"]){
+
+				$tabla = 'usuarios';
+				$datos = $_GET['idUsuario'];
+
+				if ($_GET['fotoUsuario'] != "") {
+					
+					unlink($_GET['fotoUsuario']);
+					rmdir('vistas/img/usuarios/'.$_GET["usuario"]);
+
+				}
+
+				$respuesta = ModeloUsuarios::mdlBorrarUsuario($tabla, $datos);
+
+				if ($respuesta == "ok") {
+					
+					echo '<script>
+
+					swal({
+
+						type: "success",
+						title: "¡El usuario ha sido eliminado correctamente!",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar",
+						closeOnConfirm: false						
+				
+					}).then((result)=>{
+
+						if(result.value){
+
+							window.location = "usuarios";
+
+						}
+
+					})
+
+					</script>';
+
+				}
 
 			}
 

@@ -77,7 +77,7 @@ class ModeloUsuarios{
 	}
 
 	/*=============================================
-	EDITAR USUARIOS
+	EDITAR USUARIO
 	=============================================*/
 
 	static public function mdlEditarUsuario($tabla, $datos){
@@ -108,7 +108,7 @@ class ModeloUsuarios{
 	}
 
 	/*=============================================
-	ACTUALIZAR USUARIOS
+	ACTUALIZAR USUARIO
 	=============================================*/
 
 	static public function mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2){
@@ -117,6 +117,32 @@ class ModeloUsuarios{
 
 		$stmt -> bindParam(":".$item1, $valor1, PDO::PARAM_STR);
 		$stmt -> bindParam(":".$item2, $valor2, PDO::PARAM_STR);
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	/*=============================================
+	ELIMINAR USUARIO
+	=============================================*/
+
+	public function mdlBorrarUsuario($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+
+		$stmt -> bindParam(":id", $datos, PDO::PARAM_INT);
 
 		if($stmt -> execute()){
 

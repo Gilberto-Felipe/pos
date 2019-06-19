@@ -49,6 +49,7 @@ class AjaxUsuarios {
 	=============================================*/
 
 	public $validarUsuario;
+
 	public function ajaxValidarUsuario(){
 
 		$item = "usuario";
