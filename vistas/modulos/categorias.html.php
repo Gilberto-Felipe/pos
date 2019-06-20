@@ -99,7 +99,7 @@
 
 
 <!--=====================================
-MODAL AGREGAR USUARIO
+MODAL AGREGAR CATEGORÍA
 ======================================-->
 
 <div id="modalAgregarCategoria" class="modal fade" role="dialog">
@@ -138,7 +138,7 @@ MODAL AGREGAR USUARIO
               
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevaCategoria" placeholder="Ingresar categoria" id="nuevaCategoria" required>
+                <input type="text" class="form-control input-lg" name="nuevaCategoria" placeholder="Ingresar categoria" required>
 
               </div>
 
@@ -160,12 +160,7 @@ MODAL AGREGAR USUARIO
 
         </div>
 
-          <?php 
 
-              $crearCategoria = new ControladorCategorias();
-              $crearCategoria -> ctrCrearCategoria();
-
-           ?>
 
       </form>
 

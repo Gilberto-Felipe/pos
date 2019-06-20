@@ -54,7 +54,7 @@ $(".nuevaFoto").change(function(){
 EDITAR USUARIO
 =============================================*/
 
-$(document).on("click", ".btnEditarUsuario", function(){
+$(".tablas").on("click", ".btnEditarUsuario", function(){
 
 	let idUsuario = $(this).attr("idUsuario");
 	//console.log("idUsuario", idUsuario);
@@ -100,7 +100,7 @@ $(document).on("click", ".btnEditarUsuario", function(){
 ACTIVAR USUARIO
 =============================================*/
 
-$(document).on("click", ".btnActivar", function(){
+$(".tablas").on("click", ".btnActivar", function(){
 
 	let idUsuario = $(this).attr("idUsuario");
 	let estadoUsuario = $(this).attr("estadoUsuario");
@@ -163,7 +163,7 @@ $(document).on("click", ".btnActivar", function(){
 });
 
 /*=============================================
-REVISAR SI USUARIO YA ESTÁ REGISTRADO
+EVITAR USUARIOS REPETIDOS
 =============================================*/
 
 $("#nuevoUsuario").change(function() {
@@ -203,7 +203,7 @@ $("#nuevoUsuario").change(function() {
 ELIMINAR USUARIO
 =============================================*/
 
-$(document).on("click", ".btnEliminarUsuario", function(){
+$(".tablas").on("click", ".btnEliminarUsuario", function(){
 
 	let idUsuario = $(this).attr("idUsuario");
 	let fotoUsuario = $(this).attr("fotoUsuario");
@@ -232,3 +232,15 @@ $(document).on("click", ".btnEliminarUsuario", function(){
 	});
 
 });
+
+/*=============================================
+MOSTRAR FOTO POR DEFECTO AL AGREGAR NUEVO USUARIO 
+-- para solucionar el siguiente problema: cuando abres modificas un usuario y no guardas cambios, y luego abres agregar nuevo usuario, aparece la foto del usuario que ibas modificar.
+=============================================*/
+
+$(document).on("click", "#btnAgregarUsuario", function(){
+
+    $(".previsualizar").attr("src", "vistas/img/usuarios/default/anonymous.png");
+    
+});
+

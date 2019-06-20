@@ -92,6 +92,7 @@ VALIDAR NO REPETIR USUARIO
 =============================================*/
 
 if (isset($_POST['validarUsuario'])){
+	//echo '<pre>'; print_r($_POST['validarUsuario']); echo '</pre>';
 
 	$validarUsuario = new AjaxUsuarios();
 	$validarUsuario -> validarUsuario = $_POST["validarUsuario"];
