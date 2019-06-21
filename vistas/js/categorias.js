@@ -34,3 +34,33 @@ $("#nuevaCategoria").change(function() {
 	});
 
 });
+
+/*=============================================
+EDITAR CATEGORIAS
+=============================================*/
+
+$(".btnEditarCategoria").click(function(){
+
+	let idCategoria = $(this).attr('idCategoria');
+
+	let datos = new FormData();
+	datos.append("idCategoria", idCategoria);
+
+	$.ajax({
+		url: 'ajax/categorias.ajax.php',
+		method: 'POST',
+		data: datos,
+		cache: false, 
+		contentType: false,
+		processData: false,
+		dataType: 'json',
+		success: function(respuesta){
+
+			$("#editarCategoria").val(respuesta["categoria"]);
+			$("#idCategoria").val(respuesta["id"]);
+
+		}
+
+	});
+
+});

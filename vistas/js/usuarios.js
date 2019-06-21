@@ -235,7 +235,7 @@ $(".tablas").on("click", ".btnEliminarUsuario", function(){
 
 /*=============================================
 MOSTRAR FOTO POR DEFECTO AL AGREGAR NUEVO USUARIO 
--- para solucionar el siguiente problema: cuando abres modificas un usuario y no guardas cambios, y luego abres agregar nuevo usuario, aparece la foto del usuario que ibas modificar.
+-- solución problema: cuando abres modificas un usuario y no guardas cambios, y luego abres agregar nuevo usuario, aparece la foto del usuario que ibas modificar.
 =============================================*/
 
 $(document).on("click", "#btnAgregarUsuario", function(){
