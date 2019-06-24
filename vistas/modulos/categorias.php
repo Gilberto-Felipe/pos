@@ -66,7 +66,7 @@
                             
                             <button class="btn btn-warning btnEditarCategoria" idCategoria="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarCategoria"><i class="fa fa-pencil"></i></button>
 
-                            <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                            <button class="btn btn-danger btnEliminarCategoria" idCategoria="'.$value["id"].'"><i class="fa fa-times"></i></button>
 
                           </div>
 
@@ -131,7 +131,7 @@ MODAL AGREGAR CATEGORÍA
               
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevaCategoria" placeholder="Ingresar categoria" id="nuevaCategoria" required>
+                <input type="text" class="form-control input-lg nuevaCategoria" name="nuevaCategoria" placeholder="Ingresar categoria" required>
 
               </div>
 
@@ -208,7 +208,7 @@ MODAL EDITAR CATEGORÍA
               
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="editarCategoria" id="editarCategoria" required>
+                <input type="text" class="form-control input-lg nuevaCategoria" name="editarCategoria" id="editarCategoria" required>
 
                 <input type="hidden" name="idCategoria" id="idCategoria" required>
                 
@@ -247,4 +247,12 @@ MODAL EDITAR CATEGORÍA
   </div>
 
 </div>
+
+<?php 
+
+    $eliminarCategoria = new ControladorCategorias();
+    $eliminarCategoria -> ctrBorrarCategoria();
+
+
+ ?>
 

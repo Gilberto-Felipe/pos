@@ -2,7 +2,7 @@
 EVITAR CATEGORIAS REPETIDAS
 =============================================*/
 
-$("#nuevaCategoria").change(function() {
+$(".nuevaCategoria").change(function() {
 
 	$(".alert").remove();
 	
@@ -23,9 +23,9 @@ $("#nuevaCategoria").change(function() {
 
 			if (respuesta) {
 
-				$("#nuevaCategoria").parent().after('<div class="alert alert-warning">Esta categoría ya existe en la base de datos.</div>');
+				$(".nuevaCategoria").parent().after('<div class="alert alert-warning">Esta categoría ya existe en la base de datos.</div>');
 
-				$("#nuevaCategoria").val("");
+				$(".nuevaCategoria").val("");
 
 			}
 
@@ -58,6 +58,37 @@ $(".btnEditarCategoria").click(function(){
 
 			$("#editarCategoria").val(respuesta["categoria"]);
 			$("#idCategoria").val(respuesta["id"]);
+
+		}
+
+	});
+
+});
+
+/*=============================================
+ELIMINAR CATEGORIAS
+=============================================*/
+
+$(".tablas").on("click", ".btnEliminarCategoria", function(){
+
+	let idCategoria = $(this).attr("idCategoria");
+
+	swal({
+
+		title: "¿Estás seguro de eliminar la categoría?",
+		text: "Puedes cancelar la acción",
+		type: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		cancelButtonText: 'Cancelar',
+		confirmButtonText: 'Sí, eliminar'
+
+	}).then(function(result){
+
+		if (result.value) {
+
+			window.location = "index.php?ruta=categorias&idCategoria="+idCategoria;
 
 		}
 
