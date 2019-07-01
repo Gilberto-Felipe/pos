@@ -14,9 +14,6 @@ class ControladorProductos {
 
 		return $respuesta;
 
-
-
-
 	}
 
 }
