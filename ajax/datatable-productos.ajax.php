@@ -77,8 +77,8 @@ class TablaProductos{
 						  "'.$descripcion.'",
 						  "'.$categorias["categoria"].'",
 						  "'.$stock.'",
-						  "'.$productos[$i]["precio_compra"].'",
-						  "'.$productos[$i]["precio_venta"].'",
+						  "'.number_format($productos[$i]["precio_compra"]).'",
+						  "'.number_format($productos[$i]["precio_venta"]).'",
 						  "'.$productos[$i]["fecha"].'",
 						  "'.$botones.'"
 						],';
