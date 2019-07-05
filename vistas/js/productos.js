@@ -1,7 +1,6 @@
 /*=============================================
 CARGAR LA TABLA DINÁMICA DE PRODUCTOS
 =============================================*/
-
 /*$.ajax({
 
 	url: "ajax/datatable-productos.ajax.php",
@@ -16,7 +15,6 @@ CARGAR LA TABLA DINÁMICA DE PRODUCTOS
 /*=============================================
 CONFIGURANDO DATATABLE
 =============================================*/
-
 $('.tablaProductos').DataTable( {
 
     "ajax": "ajax/datatable-productos.ajax.php",
@@ -55,7 +53,6 @@ $('.tablaProductos').DataTable( {
 /*=============================================
 CAPTURANDO LA CATEGORÍA PARA ASIGNAR EL CÓDIGO
 =============================================*/
-
 $('#nuevaCategoria').change(function(){
 
 	let idCategoria = $(this).val();
@@ -90,5 +87,59 @@ $('#nuevaCategoria').change(function(){
 
 	});
 	
+});
+
+/*=============================================
+AGREGANDO PRECIO DE VENTA
+=============================================*/
+$("#nuevoPrecioCompra").change(function(){
+
+	if($(".porcentaje").prop("checked")){
+
+		let valorPorcentaje = $(".nuevoPorcentaje").val();
+
+		let porcentaje = Number(($("#nuevoPrecioCompra").val()*valorPorcentaje/100))+Number($("#nuevoPrecioCompra").val());
+
+		$("#nuevoPrecioVenta").val(porcentaje);
+		$("#nuevoPrecioVenta").prop("readonly",true);
+
+	}
+
+});
+
+/*=============================================
+CAMBIO DE PORCENTAJE
+=============================================*/
+$(".nuevoPorcentaje").change(function(){
+
+	if($(".porcentaje").prop("checked")){
+
+		let valorPorcentaje = $(this).val();
+		
+		let porcentaje = Number(($("#nuevoPrecioCompra").val()*valorPorcentaje/100))+Number($("#nuevoPrecioCompra").val());
+
+//		let editarPorcentaje = Number(($("#editarPrecioCompra").val()*valorPorcentaje/100))+Number($("#editarPrecioCompra").val());
+
+		$("#nuevoPrecioVenta").val(porcentaje);
+		$("#nuevoPrecioVenta").prop("readonly",true);
+
+		/*$("#editarPrecioVenta").val(editarPorcentaje);
+		$("#editarPrecioVenta").prop("readonly",true);*/
+
+	}
+
+});
+
+$(".porcentaje").on("ifUnchecked", function(){
+
+	$("#nuevoPrecioVenta").prop("readonly",false);
+	//$("#editarPrecioVenta").prop("readonly",false);
+
+});
+
+$(".porcentaje").on("ifChecked", function(){
+
+	$("#nuevoPrecioVenta").prop("readonly",true);
+	//$("#editarPrecioVenta").prop("readonly",true);
 
 });

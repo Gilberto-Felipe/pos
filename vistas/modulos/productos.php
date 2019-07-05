@@ -150,31 +150,7 @@ MODAL AGREGAR PRODUCTO
               
                 <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevaDescripción" placeholder="Ingresar descripción" required>
-
-              </div>
-
-            </div>
-
-            <!-- ENTRADA PARA SELECCIONAR CATEGORÍA -->
-
-            <div class="form-group">
-              
-              <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
-
-                <select class="form-control input-lg" name="nuevoCategoría">
-                  
-                  <option value="">Selecionar categoría</option>
-
-                  <option value="Taladros">Taladros</option>
-
-                  <option value="Andamios">Andamios</option>
-
-                  <option value="Equipo para la construcción">Equipo para la construcción</option>
-
-                </select>
+                <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar descripción" required>
 
               </div>
 
@@ -188,7 +164,7 @@ MODAL AGREGAR PRODUCTO
               
                 <span class="input-group-addon"><i class="fa fa-check"></i></span> 
 
-                <input type="number" class="form-control input-lg" name="nuevStock" min="0" placeholder="Stock" required>
+                <input type="number" class="form-control input-lg" name="nuevoStock" min="0" placeholder="Stock" required>
 
               </div>
 
@@ -204,7 +180,7 @@ MODAL AGREGAR PRODUCTO
                 
                   <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span> 
 
-                  <input type="number" class="form-control input-lg" name="nuevoPrecioCompra" min="0" placeholder="Precio de compra" required>
+                  <input type="number" class="form-control input-lg" id="nuevoPrecioCompra" name="nuevoPrecioCompra" min="0" placeholder="Precio de compra" required>
 
                 </div>
               </div>    
@@ -217,7 +193,7 @@ MODAL AGREGAR PRODUCTO
                 
                   <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span> 
 
-                  <input type="number" class="form-control input-lg" name="nuevoPrecioVenta" min="0" placeholder="Precio de venta" required>
+                  <input type="number" class="form-control input-lg" id="nuevoPrecioVenta" name="nuevoPrecioVenta" min="0" placeholder="Precio de venta" required>
 
                 </div>
 
@@ -288,7 +264,12 @@ MODAL AGREGAR PRODUCTO
 
         </div>
 
+        <?php 
 
+            $crearProducto = new ControladorProductos();
+            $crearProducto -> ctrCrearProducto();
+
+        ?>
 
       </form>
 
