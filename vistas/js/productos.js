@@ -73,12 +73,12 @@ $('#nuevaCategoria').change(function(){
 
 	      	if(!respuesta){
 
-	      		var nuevoCodigo = idCategoria+"01";
+	      		let nuevoCodigo = idCategoria+"01";
 	      		$("#nuevoCodigo").val(nuevoCodigo);
 
 	      	}else{
 
-	      		var nuevoCodigo = Number(respuesta["codigo"]) + 1;
+	      		let nuevoCodigo = Number(respuesta["codigo"]) + 1;
 	          	$("#nuevoCodigo").val(nuevoCodigo);
 
 	      	}
@@ -92,7 +92,7 @@ $('#nuevaCategoria').change(function(){
 /*=============================================
 AGREGANDO PRECIO DE VENTA
 =============================================*/
-$("#nuevoPrecioCompra").change(function(){
+$("#nuevoPrecioCompra, #editarPrecioCompra").change(function(){
 
 	if($(".porcentaje").prop("checked")){
 
@@ -100,8 +100,13 @@ $("#nuevoPrecioCompra").change(function(){
 
 		let porcentaje = Number(($("#nuevoPrecioCompra").val()*valorPorcentaje/100))+Number($("#nuevoPrecioCompra").val());
 
+		let editarPorcentaje = Number(($("#editarPrecioCompra").val()*valorPorcentaje/100))+Number($("#editarPrecioCompra").val());
+
 		$("#nuevoPrecioVenta").val(porcentaje);
 		$("#nuevoPrecioVenta").prop("readonly",true);
+
+		$("#editarPrecioVenta").val(editarPorcentaje);
+		$("#editarPrecioVenta").prop("readonly",true);
 
 	}
 
@@ -118,13 +123,13 @@ $(".nuevoPorcentaje").change(function(){
 		
 		let porcentaje = Number(($("#nuevoPrecioCompra").val()*valorPorcentaje/100))+Number($("#nuevoPrecioCompra").val());
 
-//		let editarPorcentaje = Number(($("#editarPrecioCompra").val()*valorPorcentaje/100))+Number($("#editarPrecioCompra").val());
+		let editarPorcentaje = Number(($("#editarPrecioCompra").val()*valorPorcentaje/100))+Number($("#editarPrecioCompra").val());
 
 		$("#nuevoPrecioVenta").val(porcentaje);
 		$("#nuevoPrecioVenta").prop("readonly",true);
 
-		/*$("#editarPrecioVenta").val(editarPorcentaje);
-		$("#editarPrecioVenta").prop("readonly",true);*/
+		$("#editarPrecioVenta").val(editarPorcentaje);
+		$("#editarPrecioVenta").prop("readonly",true);
 
 	}
 
@@ -133,14 +138,14 @@ $(".nuevoPorcentaje").change(function(){
 $(".porcentaje").on("ifUnchecked", function(){
 
 	$("#nuevoPrecioVenta").prop("readonly",false);
-	//$("#editarPrecioVenta").prop("readonly",false);
+	$("#editarPrecioVenta").prop("readonly",false);
 
 });
 
 $(".porcentaje").on("ifChecked", function(){
 
 	$("#nuevoPrecioVenta").prop("readonly",true);
-	//$("#editarPrecioVenta").prop("readonly",true);
+	$("#editarPrecioVenta").prop("readonly",true);
 
 });
 
@@ -195,3 +200,70 @@ $(".nuevaImagen").change(function(){
 	}
 
 });
+
+/*=============================================
+EDITAR PRODUCTO
+=============================================*/
+$(".tablaProductos tbody").on("click", "button.btnEditarProducto", function(){
+
+	let idProducto = $(this).attr("idProducto");
+	
+	let datos = new FormData();
+    datos.append("idProducto", idProducto);
+
+     $.ajax({
+
+      url:"ajax/productos.ajax.php",
+      method: "POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType:"json",
+      success:function(respuesta){
+          
+          let datosCategoria = new FormData();
+          datosCategoria.append("idCategoria",respuesta["id_categoria"]);
+
+           $.ajax({
+
+              url:"ajax/categorias.ajax.php",
+              method: "POST",
+              data: datosCategoria,
+              cache: false,
+              contentType: false,
+              processData: false,
+              dataType:"json",
+              success:function(respuesta){
+                  
+                  $("#editarCategoria").val(respuesta["id"]);
+                  $("#editarCategoria").html(respuesta["categoria"]);
+
+              }
+
+          });
+
+           $("#editarCodigo").val(respuesta["codigo"]);
+
+           $("#editarDescripcion").val(respuesta["descripcion"]);
+
+           $("#editarStock").val(respuesta["stock"]);
+
+           $("#editarPrecioCompra").val(respuesta["precio_compra"]);
+
+           $("#editarPrecioVenta").val(respuesta["precio_venta"]);
+
+           if(respuesta["imagen"] != ""){
+
+		       	$("#imagenActual").val(respuesta["imagen"]);
+
+		       	$(".previsualizar").attr("src",  respuesta["imagen"]);
+
+           }
+
+      }
+
+  });
+
+});
+
