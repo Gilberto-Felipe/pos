@@ -240,7 +240,7 @@ MODAL AGREGAR PRODUCTO
               
               <div class="panel">SUBIR IMAGEN</div>
 
-              <input type="file" id="nuevaImagen" name="nuevaImagen">
+              <input type="file" class="nuevaImagen" name="nuevaImagen">
 
               <p class="help-block">Peso máximo de la imagen 2MB</p>
 
