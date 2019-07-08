@@ -267,3 +267,34 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function(){
 
 });
 
+/*=============================================
+ELIMINAR PRODUCTO
+=============================================*/
+
+$(".tablaProductos tbody").on("click", "button.btnEliminarProducto", function(){
+
+	let idProducto = $(this).attr("idProducto");
+	let codigo = $(this).attr("codigo");
+	let imagen = $(this).attr("imagen");
+
+	swal({
+
+		title: '¿Está seguro de borrar el producto?',
+		text: "¡Si no lo está puede cancelar la accíón!",
+		type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, borrar producto!'
+        }).then(function(result){
+        if (result.value) {
+
+        	window.location = "index.php?ruta=productos&idProducto="+idProducto+"&imagen="+imagen+"&codigo="+codigo;
+
+        }
+
+	})
+
+});
+
