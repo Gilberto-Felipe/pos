@@ -191,7 +191,7 @@ MODAL AGREGAR CLIENTE
               
                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevaDireccion" placeholder="Ingresar tu dirección" required>
+                <input type="text" class="form-control input-lg" name="nuevDirección" placeholder="Ingresar tu dirección" required>
 
               </div>
 
@@ -227,14 +227,9 @@ MODAL AGREGAR CLIENTE
 
         </div>
 
+
+
       </form>
-
-      <?php 
-
-            $crearCliente = new ControladorClientes();
-            $crearCliente -> ctrCrearCliente();
-
-      ?>
 
     </div>
 
