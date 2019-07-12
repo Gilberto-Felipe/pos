@@ -235,7 +235,8 @@ $(".tablas").on("click", ".btnEliminarUsuario", function(){
 
 /*=============================================
 MOSTRAR FOTO POR DEFECTO AL AGREGAR NUEVO USUARIO 
--- solución problema: cuando abres modificas un usuario y no guardas cambios, y luego abres agregar nuevo usuario, aparece la foto del usuario que ibas modificar.
+-- problema: ocurre cuando modificas un usuario en su modal y no guardas cambios. 
+Luego abres el modal agregar nuevo usuario, entonces aparece la foto del usuario que ibas modificar, no la foto por defecto.
 =============================================*/
 
 $(document).on("click", "#btnAgregarUsuario", function(){

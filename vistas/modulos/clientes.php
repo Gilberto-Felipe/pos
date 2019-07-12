@@ -25,13 +25,13 @@
 
       <div class="box-header with-border">
 
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCliente">Agregar categoría</button>
+        <button class="btn btn-primary" id="agregarCliente" data-toggle="modal" data-target="#modalAgregarCliente">Agregar categoría</button>
 
       </div>
 
       <div class="box-body">
 
-        <table class="table table-bordered table-striped dt-responsive tablas">
+        <table class="table table-bordered table-striped dt-responsive tablaClientes" width="100%">
 
           <thead> 
 
@@ -39,10 +39,10 @@
                 
               <th style="width: 10px">#</th>
               <th>Nombre</th>
-              <th>Doc ID</th>
+              <th>Documento ID</th>
               <th>Email</th> 
               <th>Teléfono</th> 
-              <th>Dirección</th> 
+              <th>Dirección</th>
               <th>Fecha nacimiento</th> 
               <th>Total compras</th> 
               <th>Última compra</th> 
@@ -53,37 +53,8 @@
 
           </thead>
 
-          <tbody>
-            
-            <tr>
-                
-              <td>1</td>
-              <td>Juan Villegas</td>
-              <td>098765</td>
-              <td>jvillegas@ucol.mx</td>
-              <td>555 67 77</td>
-              <td>calle Amado Nervo # 47 - 42a</td>
-              <td>1980-15-11</td>
-              <td>35</td>
-              <td>2019-10-06 12:05:32</td>
-              <td>2019-10-06 12:05:32</td>
-              <td>
-  
-                <div class="btn-group">
-                  
-                  <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-
-                  <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-
-
-                </div>
-
-              </td> 
-
-            </tr>
-
-          </tbody>
-            
+          
+           
         </table>
 
       </div>
@@ -149,7 +120,7 @@ MODAL AGREGAR CLIENTE
               
                 <span class="input-group-addon"><i class="fa fa-key"></i></span> 
 
-                <input type="numnber" min="0" class="form-control input-lg" name="nuevoDocumentoId" placeholder="Ingresar id" required>
+                <input type="numnber" min="0" class="form-control input-lg" id="nuevoDocumentoId" name="nuevoDocumentoId" placeholder="Ingresar documento id" required>
 
               </div>
 
@@ -163,7 +134,7 @@ MODAL AGREGAR CLIENTE
               
                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 
 
-                <input type="email" class="form-control input-lg" name="nuevoEmail" placeholder="Ingresar tu email" required>
+                <input type="email" class="form-control input-lg" name="nuevoEmail" placeholder="Ingresar email" required>
 
               </div>
 
@@ -177,7 +148,7 @@ MODAL AGREGAR CLIENTE
               
                 <span class="input-group-addon"><i class="fa fa-phone"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevoTelefono" placeholder="Ingresar tu teléfono" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
+                <input type="text" class="form-control input-lg" name="nuevoTelefono" placeholder="Ingresar teléfono" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
 
               </div>
 
@@ -191,7 +162,7 @@ MODAL AGREGAR CLIENTE
               
                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevaDireccion" placeholder="Ingresar tu dirección" required>
+                <input type="text" class="form-control input-lg" name="nuevaDireccion" placeholder="Ingresar dirección" required>
 
               </div>
 
@@ -205,7 +176,7 @@ MODAL AGREGAR CLIENTE
               
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevaFechaNacimiento" placeholder="Ingresar tu fecha de nacimiento" data-inputmask="'alias': 'yyyy/mm/dd'" data-mask required>
+                <input type="text" class="form-control input-lg" name="nuevaFechaNacimiento" placeholder="Ingresar fecha de nacimiento" data-inputmask="'alias': 'yyyy/mm/dd'" data-mask required>
 
               </div>
 

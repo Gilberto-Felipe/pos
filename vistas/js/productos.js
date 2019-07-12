@@ -298,3 +298,15 @@ $(".tablaProductos tbody").on("click", "button.btnEliminarProducto", function(){
 
 });
 
+/*=============================================
+MOSTRAR FOTO POR DEFECTO AL AGREGAR NUEVO USUARIO DESPUÉS DE ABRIR EL MODAL MODIFICAR Y NO GUARDAR CAMBIOS
+-- problema: ocurre cuando modificas un usuario/producto en el modal y no guardas cambios. 
+Si abres el modal agregar nuevo usuario, entonces aparece la foto del usuario que ibas modificar, no la foto por defecto de agrear nuevo usuario/lo que sea.
+=============================================*/
+
+$(document).on("click", "#btnAgregarProducto", function(){
+
+    $(".previsualizar").attr("src", "vistas/img/productos/default/anonymous.png");
+    
+});
+

@@ -45,7 +45,7 @@ class AjaxUsuarios {
 	}
 
 	/*=============================================
-	VALIDAR NO REPETIR USUARIO
+	EVITAR USUARIOS REPETIDOS
 	=============================================*/
 
 	public $validarUsuario;

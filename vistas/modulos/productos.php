@@ -25,7 +25,7 @@
 
       <div class="box-header with-border">
 
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarProducto">Agregar producto</button>
+        <button class="btn btn-primary" id="btnAgregarProducto" data-toggle="modal" data-target="#modalAgregarProducto">Agregar producto</button>
 
       </div>
 
