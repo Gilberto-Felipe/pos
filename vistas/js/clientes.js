@@ -1,13 +1,13 @@
 /*=============================================
 CARGAR LA TABLA DINÁMICA DE CLIENTES
 =============================================*/
-/*COMPRUEBA CONEXIÓN CON datatable-clientes.ajax.php*/
+/*COMPRUEBA CONEXIÓN CON datatable-clientes.ajax.php
 $.ajax({
 	url: 'ajax/datatable-clientes.ajax.php',
 	success: function (respuesta){
 		console.log(respuesta);		
 	}
-});
+});*/
 
 
 /*=============================================
@@ -47,6 +47,77 @@ $('.tablaClientes').DataTable( {
 	}
     
 });
+
+/*=============================================
+EDITAR CLIENTE
+=============================================*/
+$(".tablaClientes tbody").on("click", ".btnEditarCliente", function(){
+
+	let idCliente = $(this).attr("idCliente");
+
+	let datos = new FormData();
+    datos.append("idCliente", idCliente);
+
+    $.ajax({
+
+      url:"ajax/clientes.ajax.php",
+      method: "POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType:"json",
+      success:function(respuesta){
+      
+        $("#idCliente").val(respuesta["id"]);
+        $("#editarCliente").val(respuesta["nombre"]);
+        $("#editarDocumentoId").val(respuesta["documento"]);
+        $("#editarEmail").val(respuesta["email"]);
+        $("#editarTelefono").val(respuesta["telefono"]);
+        $("#editarDireccion").val(respuesta["direccion"]);
+        $("#editarFechaNacimiento").val(respuesta["fecha_nacimiento"]);
+
+	  }
+
+  	});
+
+});
+
+
+/*=============================================
+EDITAR CLIENTE
+=============================================*/
+$(".tablaClientes").on("click", ".btnEditarCliente", function(){
+
+	let idCliente = $(this).attr("idCliente");
+
+	let datos = new FormData();
+    datos.append("idCliente", idCliente);
+
+    $.ajax({
+
+      url:"ajax/clientes.ajax.php",
+      method: "POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType:"json",
+      success:function(respuesta){
+      
+        $("#idCliente").val(respuesta["id"]);
+        $("#editarCliente").val(respuesta["nombre"]);
+        $("#editarDocumentoId").val(respuesta["documento"]);
+        $("#editarEmail").val(respuesta["email"]);
+        $("#editarTelefono").val(respuesta["telefono"]);
+        $("#editarDireccion").val(respuesta["direccion"]);
+        $("#editarFechaNacimiento").val(respuesta["fecha_nacimiento"]);
+	  }
+
+  	})
+
+})
+
 
 /*=============================================
 EVITAR CLIENTES REPETIDOS
