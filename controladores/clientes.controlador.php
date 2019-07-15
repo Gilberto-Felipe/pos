@@ -186,7 +186,7 @@ class ControladorClientes{
 
 				swal({
 					  type: "success",
-					  title: "El cliente ha sido borrado correctamente",
+					  title: "El cliente fue borrado correctamente",
 					  showConfirmButton: true,
 					  confirmButtonText: "Cerrar"
 					  }).then(function(result){
