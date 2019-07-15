@@ -5,7 +5,7 @@ CARGAR LA TABLA DINÁMICA DE CLIENTES
 $.ajax({
 	url: 'ajax/datatable-clientes.ajax.php',
 	success: function (respuesta){
-		console.log("respuesta", respuesta);		
+		console.log(respuesta);		
 	}
 });
 
@@ -13,7 +13,7 @@ $.ajax({
 /*=============================================
 CONFIGURANDO DATATABLE
 =============================================*/
-/*$('.tablaClientes').DataTable( {
+$('.tablaClientes').DataTable( {
 
     "ajax": "ajax/datatable-clientes.ajax.php",
     "deferRender": true,
@@ -46,7 +46,7 @@ CONFIGURANDO DATATABLE
 		
 	}
     
-});*/
+});
 
 /*=============================================
 EVITAR CLIENTES REPETIDOS
