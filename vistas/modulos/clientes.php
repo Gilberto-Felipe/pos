@@ -25,7 +25,7 @@
 
       <div class="box-header with-border">
 
-        <button class="btn btn-primary" id="agregarCliente" data-toggle="modal" data-target="#modalAgregarCliente">Agregar categoría</button>
+        <button class="btn btn-primary" id="agregarCliente" data-toggle="modal" data-target="#modalAgregarCliente">Agregar cliente</button>
 
       </div>
 
@@ -365,7 +365,3 @@ MODAL EDITAR CLIENTE
   $eliminarCliente -> ctrEliminarCliente();
 
 ?>
-
-
-
-

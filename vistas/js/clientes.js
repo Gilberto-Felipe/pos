@@ -119,14 +119,14 @@ $(".tablaClientes").on("click", ".btnEditarCliente", function(){
 })
 
 /*=============================================
-EVITAR CLIENTES REPETIDOS
+EVITAR AGREGAR CLIENTES REPETIDOS
 =============================================*/
 
-/*$("#nuevoDocumentoId").change(function() {
+$("#nuevoDocumentoId").change(function() {
 
 	$(".alert").remove();
 	
-	let cliente = $(this).val();
+	let documento = $(this).val();
 
 	let datos = new FormData();
 	datos.append('validarCliente', documento);
@@ -143,7 +143,7 @@ EVITAR CLIENTES REPETIDOS
 
 			if (respuesta) {
 
-				$("#nuevoDocumentoId").parent().after('<div class="alert alert-warning">Este cliente ya existe en la base de datos.</div>');
+				$("#nuevoDocumentoId").parent().after('<div class="alert alert-warning">Este documento ya existe en la base de datos.</div>');
 
 				$("#nuevoDocumentoId").val("");
 
@@ -153,7 +153,7 @@ EVITAR CLIENTES REPETIDOS
 
 	});
 
-});*/
+});
 
 /*=============================================
 ELIMINAR CLIENTE

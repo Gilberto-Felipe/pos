@@ -24,7 +24,7 @@ class AjaxClientes {
 	
 	/*=============================================
 	EVITAR CLIENTES REPETIDOS
-	=============================================
+	=============================================*/
 
 	public $validarCliente;
 
@@ -37,7 +37,7 @@ class AjaxClientes {
 
 		echo json_encode($respuesta);
 
-	}*/
+	}
 
 }
 
@@ -55,7 +55,7 @@ if(isset($_POST["idCliente"])){
 
 /*=============================================
 VALIDAR NO REPETIR USUARIO
-=============================================
+=============================================*/
 
 if (isset($_POST['validarCliente'])){
 	//echo '<pre>'; print_r($_POST['validarUsuario']); echo '</pre>';
@@ -64,4 +64,4 @@ if (isset($_POST['validarCliente'])){
 	$validarCliente -> validarCliente = $_POST["validarCliente"];
 	$validarCliente -> ajaxValidarCliente();
 
-}*/
+}
