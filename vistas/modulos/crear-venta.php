@@ -33,9 +33,9 @@
           
           <div class="box-header with-border"></div>
 
-          <div class="box-body">
-            
-            <form role="form" method="post">
+          <form role="form" method="post">
+
+            <div class="box-body">
               
               <div class="box">
 
@@ -126,10 +126,10 @@
                 <div class="col-xs-3" style="padding-left: 0px">
 
                   <div class="input-group">
-                    
-                    <input type="number" min="1" class="form-control" id="nuevoPrecioProducto" name="nuevoPrecioProducto" placeholder="000000" readonly required>
 
                     <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+                    
+                    <input type="number" min="1" class="form-control" id="nuevoPrecioProducto" name="nuevoPrecioProducto" placeholder="000000" readonly required>
 
                   </div>
 
@@ -145,19 +145,114 @@
 
                <hr>
 
+               <!--=====================================
+               ENTRADA IMPUESTOS Y TOTAL
+               ======================================-->
+
                <div class="row">
                  
-                
+                <div class="col-xs-8 pull-right">
+                  
+                  <table class="table">
+                    
+                    <thead>
+                      
+                      <tr>
+                        
+                        <th>Impuesto</th>
+                        <th>Total</th>
+
+                      </tr>
+
+                    </thead>
+
+                    <tbody>
+                      
+                      <tr>
+                        
+                        <td style="width: 50%">
+
+                          <div class="input-group">
+                          
+                            <input type="number" class="form-control" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" placeholder="0" required>
+
+                            <span class="input-group-addon"><i class="fa fa-percent"></i></span>
+
+                          </div>
+
+                        </td>
+
+                        <td style="width: 50%">
+                          
+                          <div class="input-group">
+
+                            <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+                            
+                            <input type="number" min="1" class="form-control" id="nuevoTotalVenta" name="nuevoTotalVenta" placeholder="00000" readonly required>
+
+                          </div>
+
+                        </td>
+
+                      </tr>
+
+                    </tbody>
+
+                  </table>
+
+                </div>
 
                </div>
 
+               <hr>
+
+              <!--=====================================
+              ENTRADA MÉTODO DE PAGO
+              ======================================-->
+              
+               <div class="form-group row">
+
+                <div class="col-xs-6" style="padding-right: 0px">
+                  
+                  <div class="input-group">
+                    
+                    <select class="form-control" id="nuevoMetodoPago" name="nuevoMetodoPago" required>
+                      <option value="">Seleccione método de pago</option>
+                      <option value="Efectivo">Efectivo</option>
+                      <option value="TC">Tarjeta crédito</option>
+                      <option value="TD">Tarjeta débito</option>                  
+                    </select>
+
+                  </div>
+
+                </div>
+
+                <div class="col-xs-6" style="padding-left: 0px">
+                  
+                  <div class="input-group">
+                    
+                    <input type="text" class="form-control" id="nuevoCodigoTransaccion" name="nuevoCodigoTransaccion" placeholder="Código transacción" required>
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+
+                  </div>
+
+                </div>   
+
+               </div>
+
+               <br>
 
               </div>
 
+            </div>
 
-            </form>
+          <div class="box-footer">
+
+            <button type="submit" class="btn btn-primary pull-right">Guardar venta</button>
 
           </div>
+
+          </form>
 
         </div>
 
@@ -169,7 +264,54 @@
         
       <div class="col-lg-7 hidden-md hidden-sm hidden-xs">
 
-        <div class="box box-warning"></div>
+        <div class="box box-warning">
+          
+          <div class="box-header with-border">
+            
+            <div class="box-body">
+              
+              <table class="table table-bordered table-striped dt-responsive tablas">
+                
+                <thead>
+                  
+                  <tr>
+                    
+                    <th style="width: 10px">#</th>
+                    <th>Imagen</th>
+                    <th>Código</th>
+                    <th>Descripción</th>
+                    <th>Stock</th>
+                    <th>Acciones</th>
+
+                  </tr>
+
+                </thead>
+
+                <tbody>
+                  
+                  <tr>
+                    
+                    <td>1</td>
+                    <td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
+                    <td>00123</td>
+                    <td>Lorem ipsum dolor sit amet.</td>
+                    <td>20</td>
+                    <td>
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-primary">Agregar</button>
+                      </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </div>
+
+        </div>
         
       </div>
         
