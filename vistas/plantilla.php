@@ -49,6 +49,9 @@
 
   <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="vistas/plugins/iCheck/all.css">
+
+  <!-- Select2 -->
+  <link rel="stylesheet" href="vistas/bower_components/select2/dist/css/select2.min.css">
   
   <!--=====================================
   =            Plugins js                 =
@@ -85,6 +88,9 @@
   <script src="vistas/plugins/input-mask/jquery.inputmask.js"></script>
   <script src="vistas/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
   <script src="vistas/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+
+  <!-- Select2 -->
+  <script src="vistas/bower_components/select2/dist/js/select2.full.min.js"></script>
 
 </head>
 
@@ -164,7 +170,7 @@ if(isset($_GET["ruta"])){
   <script src="vistas/js/categorias.js"></script>
   <script src="vistas/js/productos.js"></script>
   <script src="vistas/js/clientes.js"></script>
-
+  <script src="vistas/js/ventas.js"></script>
 
 </body>
 </html>

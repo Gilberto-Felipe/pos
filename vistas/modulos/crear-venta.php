@@ -110,7 +110,7 @@
                     
                     <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
-                    <select class="form-control" name="seleccionarCliente" id="seleccionarCliente" required>
+                    <select class="form-control select2-single" name="seleccionarCliente" id="seleccionarCliente" required>
                       
                       <option value="">Seleccionar cliente</option>
 
@@ -314,7 +314,7 @@
             
             <div class="box-body">
               
-              <table class="table table-bordered table-striped dt-responsive tablas">
+              <table class="table table-bordered table-striped dt-responsive tablaVentas">
                 
                 <thead>
                   
@@ -331,23 +331,7 @@
 
                 </thead>
 
-                <tbody>
-                  
-                  <tr>
-                    
-                    <td>1</td>
-                    <td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-                    <td>00123</td>
-                    <td>Lorem ipsum dolor sit amet.</td>
-                    <td>20</td>
-                    <td>
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-primary">Agregar</button>
-                      </div>
-                    </td>
-                  </tr>
 
-                </tbody>
 
               </table>
 
