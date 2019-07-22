@@ -81,6 +81,27 @@ $(".tablaVentas tbody").on('click', 'button.agregarProducto', function() {
           	let stock = respuesta["stock"];
           	let precio = respuesta["precio_venta"];
 
+          	/*=============================================
+          	EVITAR AGREGAR PRODUTO CUANDO EL STOCK ESTÁ EN CERO
+          	=============================================*/
+
+          	if(stock == 0){
+
+      			swal({
+			      title: "No hay stock disponible",
+			      type: "error",
+			      confirmButtonText: "¡Cerrar!"
+			    });
+
+			    $("button[idProducto='"+idProducto+"']").addClass("btn-primary agregarProducto");
+
+			    return;
+
+          	}
+
+          	/*=============================================
+          	CAPTURANDO idProducto PARA AÑADIR Y QUITAR PRODUCTOS
+          	=============================================*/
           	$(".nuevoProducto").append(
 
           		'<div class="row" style="padding:5px 15px">'+
@@ -93,7 +114,7 @@ $(".tablaVentas tbody").on('click', 'button.agregarProducto', function() {
 	                    
 	                    '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto="'+idProducto+'"><i class="fa fa-times"></i></button></span>'+
 
-	                    '<input type="text" class="form-control" name="agregarProducto" id="agregarProducto" value="'+descripcion+'" readonly required>'+
+	                    '<input type="text" class="form-control nuevaDescripcionProducto" name="agregarProducto" id="agregarProducto" value="'+descripcion+'" readonly required>'+
 
 	                  '</div>'+
 
@@ -132,14 +153,57 @@ $(".tablaVentas tbody").on('click', 'button.agregarProducto', function() {
 });
 
 /*=============================================
+CUANDO CARGUE LA TABLA CADA VEZ QUE NAVEGUE EN ELLA
+=============================================*/
+
+$(".tablaVentas").on("draw.dt", function(){
+
+	if(localStorage.getItem("quitarProducto") != null){
+
+		let listaIdProductos = JSON.parse(localStorage.getItem("quitarProducto"));
+
+		for(let i = 0; i < listaIdProductos.length; i++){
+
+			$("button.recuperarBoton[idProducto='"+listaIdProductos[i]["idProducto"]+"']").removeClass('btn-default');
+			$("button.recuperarBoton[idProducto='"+listaIdProductos[i]["idProducto"]+"']").addClass('btn-primary agregarProducto');
+
+		}
+
+	}
+
+});
+
+/*=============================================
 QUITAR PRODUCTOS DE LA VENTA Y RECUPERAR BOTÓN AGREGAR PRODUCTO
 =============================================*/
+
+let idQuitarProducto = [];
+
+localStorage.removeItem("quitarProducto");
 
 $(".formularioVenta").on('click', 'button.quitarProducto', function() {
 
 	$(this).parent().parent().parent().parent().remove();
 
 	let idProducto = $(this).attr("idProducto");
+
+	/*=============================================
+	ALMACENAR EN EL LOCALSTORAGE EL ID DEL PRODUCTO A QUITAR
+	=============================================*/
+
+	if(localStorage.getItem("quitarProducto") == null){
+
+		idQuitarProducto;
+	
+	}else{
+
+		idQuitarProducto.concat(localStorage.getItem("quitarProducto"))
+
+	}
+
+	idQuitarProducto.push({"idProducto":idProducto});
+
+	localStorage.setItem("quitarProducto", JSON.stringify(idQuitarProducto));
 
 	$("button.recuperarBoton[idProducto='"+idProducto+"']").removeClass("btn-default");
 
