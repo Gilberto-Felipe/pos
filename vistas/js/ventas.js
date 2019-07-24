@@ -130,13 +130,13 @@ $(".tablaVentas tbody").on('click', 'button.agregarProducto', function() {
 
 	                '<!-- Precio del producto -->'+
 
-	                '<div class="col-xs-3" style="padding-left: 0px">'+
+	                '<div class="col-xs-3 ingresoPrecio" style="padding-left: 0px">'+
 
 	                 '<div class="input-group">'+
 
 	                    '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
 	                    
-	                    '<input type="number" min="1" class="form-control nuevoPrecioProducto" name="nuevoPrecioProducto" value="'+precio+'" readonly required>'+
+	                    '<input type="number" min="1" class="form-control nuevoPrecioProducto" precioReal="'+precio+'" name="nuevoPrecioProducto" value="'+precio+'" readonly required>'+
 
 	                 '</div>'+
 
@@ -273,7 +273,7 @@ $(".btnAgregarProducto").click(function(){
 
 	                    '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
 	                    
-	                    '<input type="number" min="1" class="form-control nuevoPrecioProducto" name="nuevoPrecioProducto" value readonly required>'+
+	                    '<input type="number" min="1" class="form-control nuevoPrecioProducto" precioReal="" name="nuevoPrecioProducto" readonly required>'+
 
 	                 '</div>'+
 
@@ -337,10 +337,43 @@ $(".formularioVenta").on("change", "select.nuevaDescripcionProducto", function()
 
 			$(nuevaCantidadProducto).attr("stock", respuesta["stock"]);
 			$(nuevoPrecioProducto).val(respuesta["precio_venta"]);
+			$(nuevoPrecioProducto).attr("precioReal", respuesta["precio_venta"]);
 
 		}
 
 	});
 
+});
+
+/*=============================================
+MODIFICAR LA CANTIDAD a pagar x producto
+=============================================*/
+
+$(".formularioVenta").on("change", "input.nuevaCantidadProducto", function(){
+
+	var precio = $(this).parent().parent().children(".ingresoPrecio").children().children(".nuevoPrecioProducto");
+
+	var precioFinal = $(this).val() * precio.attr("precioReal");
+	
+	precio.val(precioFinal);
+
+	/*=============================================
+	SI LA CANTIDAD ES SUPERIOR AL STOCK REGRESAR VALORES INICIALES
+	=============================================*/
+
+	if (Number($(this).val()) > Number($(this).attr('stock'))){
+
+		$(this).val(1);
+
+		swal({
+
+	      title: "La cantidad supera el Stock",
+	      text: "¡Sólo hay "+$(this).attr("stock")+" unidades!",
+	      type: "error",
+	      confirmButtonText: "¡Cerrar!"
+
+	    });
+
+	}
 
 });
