@@ -146,6 +146,9 @@ $(".tablaVentas tbody").on('click', 'button.agregarProducto', function() {
 
           	);
 
+          	// SUMAR TOTAL DE PRECIOS
+          	sumarTotalPrecios();
+
 		}
 
 	});
@@ -208,6 +211,26 @@ $(".formularioVenta").on('click', 'button.quitarProducto', function() {
 	$("button.recuperarBoton[idProducto='"+idProducto+"']").removeClass("btn-default");
 
 	$("button.recuperarBoton[idProducto='"+idProducto+"']").addClass('btn-primary agregarProducto');
+
+	if($(".nuevoProducto").children().length == 0){
+
+		$("#nuevoTotalVenta").val(0);
+		/*$("#nuevoImpuestoVenta").val(0);
+		$("#totalVenta").val(0);
+		$("#nuevoTotalVenta").attr("total",0);*/
+
+	}else{
+
+		// SUMAR TOTAL DE PRECIOS
+    	sumarTotalPrecios();
+
+    	// AGREGAR IMPUESTO
+	    //agregarImpuesto()
+
+        // AGRUPAR PRODUCTOS EN FORMATO JSON
+        //listarProductos()
+
+	}
 
 });
 
@@ -298,9 +321,12 @@ $(".btnAgregarProducto").click(function(){
 
 	      			);
 
-	      		} 
+	      		}
 
 	      	}
+
+	      	// SUMAR TOTAL DE PRECIOS
+	      	sumarTotalPrecios();
 
       	}
 
@@ -351,9 +377,9 @@ MODIFICAR LA CANTIDAD a pagar x producto
 
 $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function(){
 
-	var precio = $(this).parent().parent().children(".ingresoPrecio").children().children(".nuevoPrecioProducto");
+	let precio = $(this).parent().parent().children(".ingresoPrecio").children().children(".nuevoPrecioProducto");
 
-	var precioFinal = $(this).val() * precio.attr("precioReal");
+	let precioFinal = $(this).val() * precio.attr("precioReal");
 	
 	precio.val(precioFinal);
 
@@ -364,6 +390,12 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function(){
 	if (Number($(this).val()) > Number($(this).attr('stock'))){
 
 		$(this).val(1);
+
+		let precioFinal = $(this).val() * precio.attr("precioReal");
+
+		precio.val(precioFinal);
+
+		sumarTotalPrecios();
 
 		swal({
 
@@ -376,4 +408,36 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function(){
 
 	}
 
+	// SUMAR TOTAL DE PRECIOS
+	sumarTotalPrecios();
+
 });
+
+/*=============================================
+SUMAR TODOS LOS PRECIOS
+=============================================*/
+
+function sumarTotalPrecios() {
+
+	let precioItem = $(".nuevoPrecioProducto");
+	let arraySumaPrecio = [];
+
+	for(let i = 0; i < precioItem.length; i++){
+
+		arraySumaPrecio.push(Number($(precioItem[i]).val()));
+		 
+	}
+
+	function sumaArrayPrecios(total, numero){
+
+		return total + numero;
+
+	}
+
+	let sumaTotalPrecio = arraySumaPrecio.reduce(sumaArrayPrecios);
+	
+	$("#nuevoTotalVenta").val(sumaTotalPrecio);
+	//$("#totalVenta").val(sumaTotalPrecio);
+	//$("#nuevoTotalVenta").attr("total",sumaTotalPrecio);
+	
+}
