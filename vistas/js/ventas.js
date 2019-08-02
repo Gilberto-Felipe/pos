@@ -149,6 +149,9 @@ $(".tablaVentas tbody").on('click', 'button.agregarProducto', function() {
           	// SUMAR TOTAL DE PRECIOS
           	sumarTotalPrecios();
 
+          	// AGREGAR IMPUESTO
+          	agregarImpuesto();
+
 		}
 
 	});
@@ -214,10 +217,11 @@ $(".formularioVenta").on('click', 'button.quitarProducto', function() {
 
 	if($(".nuevoProducto").children().length == 0){
 
+		$("#nuevoImpuestoVenta").val(0);
 		$("#nuevoTotalVenta").val(0);
-		/*$("#nuevoImpuestoVenta").val(0);
-		$("#totalVenta").val(0);
-		$("#nuevoTotalVenta").attr("total",0);*/
+		$("#nuevoTotalVenta").attr("total", 0);
+		//$("#totalVenta").val(0);
+		
 
 	}else{
 
@@ -225,7 +229,7 @@ $(".formularioVenta").on('click', 'button.quitarProducto', function() {
     	sumarTotalPrecios();
 
     	// AGREGAR IMPUESTO
-	    //agregarImpuesto()
+	    agregarImpuesto();
 
         // AGRUPAR PRODUCTOS EN FORMATO JSON
         //listarProductos()
@@ -328,6 +332,9 @@ $(".btnAgregarProducto").click(function(){
 	      	// SUMAR TOTAL DE PRECIOS
 	      	sumarTotalPrecios();
 
+	      	// AGREGAR IMPUESTO
+          	agregarImpuesto();
+
       	}
 
     });
@@ -411,6 +418,9 @@ $(".formularioVenta").on("change", "input.nuevaCantidadProducto", function(){
 	// SUMAR TOTAL DE PRECIOS
 	sumarTotalPrecios();
 
+	// AGREGAR IMPUESTO
+	agregarImpuesto();
+
 });
 
 /*=============================================
@@ -437,7 +447,40 @@ function sumarTotalPrecios() {
 	let sumaTotalPrecio = arraySumaPrecio.reduce(sumaArrayPrecios);
 	
 	$("#nuevoTotalVenta").val(sumaTotalPrecio);
-	//$("#totalVenta").val(sumaTotalPrecio);
-	//$("#nuevoTotalVenta").attr("total",sumaTotalPrecio);
+	$("#totalVenta").val(sumaTotalPrecio);
+	$("#nuevoTotalVenta").attr("total",sumaTotalPrecio);
 	
 }
+
+/*=============================================
+FUNCIÓN AGREGAR IMPUESTO
+=============================================*/
+
+function agregarImpuesto(){
+
+	let impuesto = $('#nuevoImpuestoVenta').val();
+	let precioTotal = $('#nuevoTotalVenta').attr("total");
+
+	let precioImpuesto = Number(precioTotal * impuesto/100);
+
+	let totalConImpuesto = Number(precioImpuesto) + Number(precioTotal);
+
+	$("#nuevoTotalVenta").val(totalConImpuesto);
+
+	//$("#totalVenta").val(totalConImpuesto);
+
+	$("#nuevoPrecioImpuesto").val(precioImpuesto);
+
+	$("#nuevoPrecioNeto").val(precioTotal);
+
+}
+
+/*=============================================
+CUANDO CAMBIA EL IMPUESTO
+=============================================*/
+
+$("#nuevoImpuestoVenta").change(function(){
+
+	agregarImpuesto();
+
+});
