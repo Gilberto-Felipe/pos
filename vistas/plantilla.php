@@ -92,6 +92,9 @@
   <!-- Select2 -->
   <script src="vistas/bower_components/select2/dist/js/select2.full.min.js"></script>
 
+  <!-- jQueryNumber -->
+  <script src="vistas/plugins/jQueryNumber/jQueryNumber.min.js"></script>
+
 </head>
 
   <!--=====================================
