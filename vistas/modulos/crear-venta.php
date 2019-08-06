@@ -184,7 +184,7 @@
 
                           <div class="input-group">
                           
-                            <input type="number" class="form-control input-lg" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" placeholder="0" required>
+                            <input type="number" class="form-control input-lg" min="0" id="nuevoImpuestoVenta" name="nuevoImpuestoVenta" placeholder="0" value="16" required>
 
                             <input type="hidden" name="nuevoPrecioImpuesto" id="nuevoPrecioImpuesto" required>
 
@@ -226,7 +226,7 @@
               ENTRADA MÉTODO DE PAGO
               ======================================-->
               
-               <div class="form-group row">
+              <div class="form-group row">
 
                 <div class="col-xs-6" style="padding-right: 0px">
                   
@@ -243,16 +243,7 @@
 
                 </div>
 
-                <div class="col-xs-6" style="padding-left: 0px">
-                  
-                  <div class="input-group">
-                    
-                    <input type="text" class="form-control" id="nuevoCodigoTransaccion" name="nuevoCodigoTransaccion" placeholder="Código transacción" required>
-                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-
-                  </div>
-
-                </div>   
+                <div class="cajasMetodoPago"></div>
 
                </div>
 
@@ -264,7 +255,7 @@
 
           <div class="box-footer">
 
-            <button type="submit" class="btn btn-primary pull-right">Guardar venta</button>
+            <button type="submit" class="btn btn-primary pull-right" id="mybtnGuardarVenta">Guardar venta</button>
 
           </div>
 

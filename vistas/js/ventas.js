@@ -506,3 +506,116 @@ FORMATO AL PRECIO FINAL
 
 $("#nuevoTotalVenta").number(true, 2);
 
+/*=============================================
+SELECCIONAR MÉTODO DE PAGO
+=============================================*/
+
+$("#nuevoMetodoPago").change(function(){
+
+	let metodo = $(this).val();
+
+	if (metodo == "Efectivo") {
+
+		$(this).parent().parent().removeClass('col-xs-6');
+
+		$(this).parent().parent().addClass('col-xs-4');
+
+		$(this).parent().parent().parent().children(".cajasMetodoPago").html(
+			
+			'<div class="col-xs-4">'+ 
+
+				'<div class="input-group">'+ 
+
+					'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+ 
+
+					'<input type="text" class="form-control nuevoValorEfectivo" placeholder="000000" required>'+
+
+				'</div>'+
+
+			'</div>'+
+
+			'<div class="col-xs-4 capturarCambioEfectivo" style="padding-left:0px">'+
+
+			 	'<div class="input-group">'+
+
+			 		'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+
+			 		'<input type="text" class="form-control nuevoCambioEfectivo" placeholder="000000" readonly required>'+
+
+			 	'</div>'+
+
+			'</div>'
+
+		);
+
+		// Agregar formato al precio
+		$('.nuevoValorEfectivo').number( true, 2);
+      	$('.nuevoCambioEfectivo').number( true, 2);
+
+	} else{
+
+		$(this).parent().parent().removeClass('col-xs-4');
+
+		$(this).parent().parent().addClass('col-xs-6');
+
+		$(this).parent().parent().parent().children('.cajasMetodoPago').html(
+
+		 	'<div class="col-xs-6" style="padding-left:0px">'+
+                        
+                '<div class="input-group">'+
+                     
+                	'<input type="text" class="form-control" id="nuevoCodigoTransaccion" placeholder="Código transacción"  required>'+
+                       
+                	'<span class="input-group-addon"><i class="fa fa-lock"></i></span>'+
+                  
+                '</div>'+
+
+              '</div>'
+
+        );
+
+	}
+
+});
+
+/*=============================================
+CAMBIO EN EFECTIVO
+=============================================*/
+
+$(".formularioVenta").on("change", "input.nuevoValorEfectivo", function(){
+
+	let efectivo = $(this).val();
+
+	let cambio =  Number(efectivo) - Number($('#nuevoTotalVenta').val());
+
+	let nuevoCambioEfectivo = $(this).parent().parent().parent().children('.capturarCambioEfectivo').children().children('.nuevoCambioEfectivo');
+
+	if (Number(efectivo) < Number($('#nuevoTotalVenta').val())) {
+
+		swal({
+
+			type: "error",
+			title: "Efectivo insuficiente",
+			showConfirmButton: true,
+			confirmButtonText: "Cerrar"
+
+		}).then(function(result){
+
+			if (result.value) {	                   
+
+		        document.getElementById('mybtnGuardarVenta').disabled=true;
+
+			}
+
+		});
+
+	} else{
+
+		document.getElementById('mybtnGuardarVenta').disabled=false;
+
+	}
+
+	nuevoCambioEfectivo.val(cambio);
+
+
+});
