@@ -147,6 +147,8 @@
 
                </div>
 
+               <input type="hidden" id="listaProductos" name="listaProductos">
+
               <!--=====================================
               BOTÓN AGREGAR PRODUCTO
               ======================================-->  
