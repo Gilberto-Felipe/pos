@@ -247,6 +247,8 @@
 
                 <div class="cajasMetodoPago"></div>
 
+                <input type="hidden" id="listaMetodoPago" name="listaMetodoPago">
+
                </div>
 
                <br>
