@@ -225,9 +225,8 @@ $(".formularioVenta").on('click', 'button.quitarProducto', function() {
 
 		$("#nuevoImpuestoVenta").val(0);
 		$("#nuevoTotalVenta").val(0);
-		$("#nuevoTotalVenta").attr("total",0);
-		//$("#totalVenta").val(0);
-		
+		$("#totalVenta").val(0);
+		$("#nuevoTotalVenta").attr("total",0);		
 
 	}else{
 
@@ -497,7 +496,7 @@ function agregarImpuesto(){
 
 	$("#nuevoTotalVenta").val(totalConImpuesto);
 
-	//$("#totalVenta").val(totalConImpuesto);
+	$("#totalVenta").val(totalConImpuesto);
 
 	$("#nuevoPrecioImpuesto").val(precioImpuesto);
 
