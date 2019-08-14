@@ -68,8 +68,6 @@ class ControladorVentas{
 
 			$traerCliente = ModeloClientes::mdlMostrarClientes($tablaClientes, $item, $valor);
 
-			//var_dump($traerCliente["compras"]);
-
 			$item1 = "compras";
 			$valor1 = array_sum($totalProductosComprados) + $traerCliente["compras"];
 
