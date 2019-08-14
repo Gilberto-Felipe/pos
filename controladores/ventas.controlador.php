@@ -22,96 +22,126 @@ class ControladorVentas{
 
 	static public function ctrCrearVenta(){
 
-		if (isset($_POST["nuevaVenta"])) {
-			
-			/*=============================================
-			ACTUALIZAR LAS COMPRAS DEL CLIENTE, REDUCIR EL STOCK Y AUMENTAR LAS VENTAS DE LOS PRODUCTOS
-			=============================================*/
+		/*=============================================
+		VALIDAR QUE HAYA LISTA DE PRODUCTOS PARA PODER GUARDAR LA COMPRA
+		=============================================*/
 
-			$listaProductos = json_decode($_POST["listaProductos"], true);
+		if (isset($_POST["nuevaVenta"]) && isset($_POST["seleccionarCliente"]) && isset($_POST["listaProductos"])) {
 
-			$totalProductosComprados = array();
+			if(!empty($_POST["listaProductos"])){
+            	
+				/*=============================================
+				ACTUALIZAR LAS COMPRAS DEL CLIENTE, REDUCIR EL STOCK Y AUMENTAR LAS VENTAS DE LOS PRODUCTOS
+				=============================================*/
 
-			foreach ($listaProductos as $key => $value) {
+				$listaProductos = json_decode($_POST["listaProductos"], true);
 
-				array_push($totalProductosComprados, $value["cantidad"]);
-				
-				$tablaProductos = "productos";
+				$totalProductosComprados = array();
+
+				foreach ($listaProductos as $key => $value) {
+
+					array_push($totalProductosComprados, $value["cantidad"]);
+					
+					$tablaProductos = "productos";
+
+					$item = "id";
+					$valor = $value["id"];
+
+					$traerProducto = ModeloProductos::mdlMostrarProductos($tablaProductos, $item, $valor);
+
+					// ACTUALIZAR VENTAS
+
+					$item1a = "ventas";
+					$valor1a = $value["cantidad"] + $traerProducto["ventas"];
+
+					$nuevasVentas = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1a, $valor1a, $valor);
+
+					// ACTUALIZAR STOCK
+
+					$item1b = "stock";
+					$valor1b = $value["stock"];
+
+					$nuevoStock = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1b, $valor1b, $valor);
+
+				}
+
+				// ACTUALIZAR LA COMPRA DEL CLIENTE
+
+				$tablaClientes = "clientes";
 
 				$item = "id";
-				$valor = $value["id"];
+				$valor = $_POST["seleccionarCliente"];
 
-				$traerProducto = ModeloProductos::mdlMostrarProductos($tablaProductos, $item, $valor);
+				$traerCliente = ModeloClientes::mdlMostrarClientes($tablaClientes, $item, $valor);
 
-				// ACTUALIZAR VENTAS
+				$item1 = "compras";
+				$valor1 = array_sum($totalProductosComprados) + $traerCliente["compras"];
 
-				$item1a = "ventas";
-				$valor1a = $value["cantidad"] + $traerProducto["ventas"];
+				$comprasCliente = ModeloClientes::mdlActualizarCliente($tablaClientes, $item1, $valor1, $valor);
 
-				$nuevasVentas = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1a, $valor1a, $valor);
+				/*=============================================
+				GUARDAR LA COMPRA
+				=============================================*/	
 
-				// ACTUALIZAR STOCK
+				$tabla = "ventas";
 
-				$item1b = "stock";
-				$valor1b = $value["stock"];
+				$datos = array("id_vendedor"=>$_POST["idVendedor"],
+							   "id_cliente"=>$_POST["seleccionarCliente"],
+							   "codigo"=>$_POST["nuevaVenta"],
+							   "productos"=>$_POST["listaProductos"],
+							   "impuesto"=>$_POST["nuevoPrecioImpuesto"],
+							   "neto"=>$_POST["nuevoPrecioNeto"],
+							   "total"=>$_POST["totalVenta"],
+							   "metodo_pago"=>$_POST["listaMetodoPago"]);
 
-				$nuevoStock = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1b, $valor1b, $valor);
+				$respuesta = ModeloVentas::mdlIngresarVenta($tabla, $datos);
 
-			}
+				if($respuesta == "ok"){
 
-			// ACTUALIZAR LA COMPRA DEL CLIENTE
+					echo '<script>
 
-			$tablaClientes = "clientes";
+						localStorage.removeItem("rango");
 
-			$item = "id";
-			$valor = $_POST["seleccionarCliente"];
+						swal({
+							  type: "success",
+							  title: "La venta se guardó correctamente",
+							  showConfirmButton: true,
+							  confirmButtonText: "Cerrar"
+							  }).then((result) => {
+									if (result.value) {
 
-			$traerCliente = ModeloClientes::mdlMostrarClientes($tablaClientes, $item, $valor);
+										window.location = "ventas";
 
-			$item1 = "compras";
-			$valor1 = array_sum($totalProductosComprados) + $traerCliente["compras"];
+									}
+								})
 
-			$comprasCliente = ModeloClientes::mdlActualizarCliente($tablaClientes, $item1, $valor1, $valor);
+					</script>';
 
-			/*=============================================
-			GUARDAR LA COMPRA
-			=============================================*/	
+				}
 
-			$tabla = "ventas";
+        	} else{
 
-			$datos = array("id_vendedor"=>$_POST["idVendedor"],
-						   "id_cliente"=>$_POST["seleccionarCliente"],
-						   "codigo"=>$_POST["nuevaVenta"],
-						   "productos"=>$_POST["listaProductos"],
-						   "impuesto"=>$_POST["nuevoPrecioImpuesto"],
-						   "neto"=>$_POST["nuevoPrecioNeto"],
-						   "total"=>$_POST["totalVenta"],
-						   "metodo_pago"=>$_POST["listaMetodoPago"]);
+        		echo '<script>
 
-			$respuesta = ModeloVentas::mdlIngresarVenta($tabla, $datos);
+        			localStorage.removeItem("rango");
 
-			if($respuesta == "ok"){
+        			swal({
+        				  type: "error",
+        				  title: "Debe elegir un producto",
+        				  showConfirmButton: true,
+        				  confirmButtonText: "Cerrar"
+        				  }).then((result) => {
+        						if (result.value) {
 
-				echo '<script>
+        							window.location = "crear-venta";
 
-					localStorage.removeItem("rango");
+        						}
+        					})
 
-					swal({
-						  type: "success",
-						  title: "La venta se guardó correctamente",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then((result) => {
-								if (result.value) {
+        		</script>';
 
-									window.location = "ventas";
-
-								}
-							})
-
-				</script>';
-
-			}
+        	}
+			
 		}
 
 	}
