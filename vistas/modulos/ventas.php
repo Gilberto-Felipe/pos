@@ -62,12 +62,17 @@
           <tbody>
 
             <?php 
+              
+              if ($_SESSION["id"] == 1) {
+                $item = null;
+                $valor = null;
+              } else{
+                $item = "id_vendedor";
+                $valor = $_SESSION["id"];
+                //$respuesta = ControladorVentas::ctrMostrarVentasVendedor($item, $valor);
+              }
 
-              $item = null;
-              $valor = null;
-              $idVendedor = $_SESSION["id"];
-                
-              $respuesta = ControladorVentas::ctrMostrarVentas($item, $valor, $idVendedor);
+              $respuesta = ControladorVentas::ctrMostrarVentas($item, $valor);                         
 
               foreach ($respuesta as $key => $value) {
                 
