@@ -3,7 +3,7 @@
 class ControladorVentas{
 
 	/*=============================================
-	MOSTRAR VENTAS
+	MOSTRAR VENTAS cuando se es administrador 
 	=============================================*/
 
 	static public function ctrMostrarVentas($item, $valor){

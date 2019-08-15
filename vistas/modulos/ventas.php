@@ -27,7 +27,11 @@
 
         <a href="crear-venta">
 
-          <button class="btn btn-primary">Agregar venta</button>
+          <button class="btn btn-primary">
+
+            Agregar venta
+
+          </button>
 
         </a>
 
@@ -35,7 +39,7 @@
 
       <div class="box-body">
 
-        <table class="table table-bordered table-striped dt-responsive tablas">
+        <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
 
           <thead> 
 
@@ -56,40 +60,71 @@
           </thead>
 
           <tbody>
-            
-            <tr>
+
+            <?php 
+
+              $item = null;
+              $valor = null;
+              $idVendedor = $_SESSION["id"];
                 
-              <td>1</td>
-              <td>1000123</td>
-              <td>Juan Villegas</td>
-              <td>Julio Gómez</td>
-              <td>TC-123456789</td>
-              <td>$ 1,000.00</td>
-              <td>$ 1,190.00</td>
-              <td>2019-10-06 12:05:32</td>
-              <td>
-  
-                <div class="btn-group">
-                  
-                  <button class="btn btn-info"><i class="fa fa-print"></i></button>
+              $respuesta = ControladorVentas::ctrMostrarVentas($item, $valor, $idVendedor);
 
-                  <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+              foreach ($respuesta as $key => $value) {
+                
+                echo '<tr>
+                          
+                        <td>'.($key + 1).'</td>
 
+                        <td>'.$value["codigo"].'</td>';
 
-                </div>
+                        $itemCliente = "id";
+                        $valorCliente = $value["id_cliente"];
 
-              </td> 
+                        $respuestaCliente = ControladorClientes::ctrMostrarClientes($itemCliente, $valorCliente);
 
-            </tr>
+                  echo '<td>'.$respuestaCliente["nombre"].'</td>';
+
+                        $itemVendedor = "id";
+                        $valorVendedor = $value["id_vendedor"];
+
+                        $respuestaVendedor = ControladorUsuarios::ctrMostrarUsuarios($itemVendedor, $valorVendedor);
+
+                  echo '<td>'.$respuestaVendedor["nombre"].'</td>
+
+                        <td>'.$value["metodo_pago"].'</td>
+
+                        <td>$ '.number_format($value["neto"], 2).'</td>
+
+                        <td>$ '.number_format($value["total"], 2).'</td>
+
+                        <td>'.$value["fecha"].'</td>
+
+                        <td>
+              
+                          <div class="btn-group">
+                            
+                            <button class="btn btn-info"><i class="fa fa-print"></i></button>
+
+                            <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+
+                          </div>
+
+                        </td> 
+
+                      </tr>';
+
+              }
+
+            ?>
 
           </tbody>
             
         </table>
 
-      </div>
+      </div><!-- .box-body -->
 
-    </div><!-- /.box -->
+    </div><!-- .box -->
 
-  </section><!-- /.content -->
+  </section><!-- .content -->
 
-</div><!-- /.content-wrapper -->
+</div><!-- .content-wrapper -->
