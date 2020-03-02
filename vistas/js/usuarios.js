@@ -131,14 +131,13 @@ $(".tablas").on("click", ".btnActivar", function(){
 
 					if (result.value) {
 
-					window.location = "usuarios";
+						window.location = "usuarios";
 
-				}
+					}
 
 				});
 
 			}
-
 
 		}
 
@@ -228,15 +227,14 @@ $(".tablas").on("click", ".btnEliminarUsuario", function(){
 
 		}
 
-
 	});
 
 });
 
 /*=============================================
 MOSTRAR FOTO POR DEFECTO AL AGREGAR NUEVO USUARIO 
--- problema: ocurre cuando modificas un usuario en su modal y no guardas cambios. 
-Luego abres el modal agregar nuevo usuario, entonces aparece la foto del usuario que ibas modificar, no la foto por defecto.
+Solucionar problema: Este ocurre cuando o abres un el modal de editar usuario y cargas la imagen, pero no guardas cambios.
+Si luego abres el modal agregar, entonces aparece la foto del usuario que ibas modificar, pero que no guardaste. No la foto por defecto.
 =============================================*/
 
 $(document).on("click", "#btnAgregarUsuario", function(){

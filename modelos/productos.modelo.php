@@ -37,7 +37,7 @@ class ModeloProductos {
 	}
 
 	/*=============================================
-	REGISTRO DE PRODUCTO
+	REGISTRAR DE PRODUCTO
 	=============================================*/
 	static public function mdlIngresarProducto($tabla, $datos){
 

@@ -59,7 +59,9 @@ class ControladorCategorias {
 				}
 
 
-			} else{
+			} 
+			
+			else{
 
 				echo '<script>
 
@@ -131,7 +133,9 @@ class ControladorCategorias {
 				}
 
 
-			} else{
+			} 
+
+			else{
 
 				echo '<script>
 

@@ -273,7 +273,7 @@ class ControladorUsuarios {
 					$nuevoAlto = 500;
 
 					/*=============================================
-					CREAR DIRECTORIO PARA GUARDAR LA FOTO
+					IR AL DIRECTORIO DE LA FOTO
 					=============================================*/	
 
 					$directorio = "vistas/img/usuarios/".$_POST['editarUsuario'];

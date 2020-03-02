@@ -49,7 +49,7 @@ $('.tablaClientes').DataTable( {
 });
 
 /*=============================================
-EDITAR CLIENTE
+EDITAR CLIENTE en DATATABLE
 =============================================*/
 $(".tablaClientes tbody").on("click", ".btnEditarCliente", function(){
 

@@ -64,7 +64,7 @@ class AjaxUsuarios {
 }
 
 /*=============================================
-EDITAR USUARIO
+EDITAR USUARIO INICIALIZACIÓN
 =============================================*/
 
 if (isset($_POST['idUsuario'])) {
@@ -76,7 +76,7 @@ if (isset($_POST['idUsuario'])) {
 }
 
 /*=============================================
-ACTIVAR USUARIO
+ACTIVAR USUARIO INICIALIZACIÓN
 =============================================*/
 if (isset($_POST['activarUsuario'])){
 

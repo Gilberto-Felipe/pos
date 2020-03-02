@@ -352,7 +352,7 @@ MODAL EDITAR USUARIO
 
                 <select class="form-control input-lg" name="editarPerfil">
                   
-                  <option value="" id="editarPerfil"></option>
+                  <option hidden value="" id="editarPerfil"></option>
 
                   <option value="Administrador">Administrador</option>
 
